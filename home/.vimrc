@@ -15,14 +15,9 @@ Bundle 'kien/ctrlp.vim'
 
 " Comment out lines in source code quickly
 Bundle "tComment"
-nnoremap // :TComment<CR>
-vnoremap // :TComment<CR>
 
 " Run rspec tests easily
 Bundle 'thoughtbot/vim-rspec'
-let g:rspec_command = ":Silent tmux select-window -t human-3:2;tmux -q send-keys -t human:2 \"zeus rspec {spec}\" C-m"
-noremap <leader>a :call RunCurrentSpecFile()<CR>
-noremap <leader>s :call RunNearestSpec()<CR>
 
 " Extra syntax highlighting
 Bundle 'scrooloose/syntastic'
@@ -46,6 +41,17 @@ let mapleader = ","
 command! -nargs=1 Silent
       \ | execute ':silent !'.<q-args>
       \ | execute ':redraw!'
+
+" Bundle config
+"
+" tComment - Use // to comment out lines
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
+
+" thoughtbot/vim-rspec
+let g:rspec_command = ":Silent tmux select-window -t human-3:2;tmux -q send-keys -t human:2 \"zeus rspec {spec}\" C-m"
+noremap <leader>a :call RunCurrentSpecFile()<CR>
+noremap <leader>s :call RunNearestSpec()<CR>
 
 filetype plugin indent on
 

@@ -85,11 +85,13 @@ syntax on
 "Highlight tabs and trailing spaces
 set list listchars=tab:>-,trail:.,extends:>
 
-"Highlight anything more than 80 charcters
-"highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-"match OverLength /\%81v.\+/
-highlight ColorColumn ctermbg=darkgray guibg=#302226
-set colorcolumn=80
+"Make it known whether the line length is greater than 79 characters
+if exists('+colorcolumn')
+    highlight ColorColumn ctermbg=darkgray guibg=#302226
+    set colorcolumn=80
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 "Don't sandbox local vimrcs and ask about them, but let the whitelist persist
 "if answered with a capital Y

@@ -54,6 +54,9 @@ noremap <leader>s :call RunNearestSpec()<CR>
 
 filetype plugin indent on
 
+" Set the filetype for *.md files to be markdown
+au BufRead,BufNewFile *.md set filetype=markdown
+
 " Up the terminal speed
 set ttyscroll=1
 set ttyfast

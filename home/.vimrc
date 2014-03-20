@@ -63,7 +63,10 @@ set ttyfast
 " set scrolljump=20
 
 " Set things up to use the Mac Clipboard
-set clipboard=unnamed
+" unless we're using tmux
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
 
 " Set 256 colors in the terminal
 set t_Co=256

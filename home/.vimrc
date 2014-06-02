@@ -24,6 +24,9 @@ Bundle 'scrooloose/syntastic'
 " Syntax highlight coffee script
 Bundle 'kchmck/vim-coffee-script'
 
+" Syntax highlight puppet
+Bundle 'rodjek/vim-puppet'
+
 " Easily reformat SQL
 Bundle 'SQLUtilities'
 
@@ -152,6 +155,10 @@ set ts=2
 set sw=2
 set et
 set softtabstop=2
+
+" Filetype specific settings
+autocmd FileType java setlocal ts=4
+autocmd FileType java setlocal sw=4
 
 " SSH in and touch files when the are saved on vagrant
 if !exists("ssh_touch_auto_command")

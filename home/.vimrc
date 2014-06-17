@@ -27,6 +27,9 @@ Bundle 'kchmck/vim-coffee-script'
 " Syntax highlight puppet
 Bundle 'rodjek/vim-puppet'
 
+" Syntax highlight rabl
+Bundle 'yaymukund/vim-rabl'
+
 " Easily reformat SQL
 Bundle 'SQLUtilities'
 

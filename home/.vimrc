@@ -30,6 +30,9 @@ Bundle 'rodjek/vim-puppet'
 " Syntax highlight rabl
 Bundle 'yaymukund/vim-rabl'
 
+" Go development
+Bundle 'fatih/vim-go'
+
 " Easily reformat SQL
 Bundle 'SQLUtilities'
 

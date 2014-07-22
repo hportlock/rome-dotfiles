@@ -1,0 +1,15 @@
+#! /bin/bash
+
+sessList=$( tmux -S /tmp/mux list-sessions )
+if [[ $sessList == *$1:* ]]
+then
+  tmux -S /tmp/mux attach-session -t $1
+else
+  baseSession=$( echo $1 | sed 's/\([^-]*\)\(\(-[0-9]\)*\)/\1/' )
+  if [[ $baseSession == $1 ]]
+  then
+    tmux -S /tmp/mux new-session -s $baseSession
+  else
+    tmux -S /tmp/mux new-session -t $baseSession -s $1
+  fi
+fi

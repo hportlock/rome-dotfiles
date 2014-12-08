@@ -30,6 +30,9 @@ Bundle 'rodjek/vim-puppet'
 " Syntax highlight rabl
 Bundle 'yaymukund/vim-rabl'
 
+" Syntax highlight todo.txt
+Bundle 'freitass/todo.txt-vim'
+
 " Golang support
 Bundle 'fatih/vim-go'
 

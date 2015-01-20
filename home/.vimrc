@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 
 " let Vundle manage Vundle
@@ -60,7 +60,7 @@ nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " thoughtbot/vim-rspec
-let g:rspec_command = ":Silent tmux select-window -t human-3:2;tmux -q send-keys -t human:2 \"zeus rspec {spec}\" C-m"
+let g:rspec_command = ":Silent tmux select-window -t human-2:2;tmux -q send-keys -t human:2 \"zeus rspec {spec}\" C-m"
 noremap <leader>a :call RunCurrentSpecFile()<CR>
 noremap <leader>s :call RunNearestSpec()<CR>
 

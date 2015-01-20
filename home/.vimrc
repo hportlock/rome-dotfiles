@@ -45,6 +45,9 @@ Bundle 'tpope/vim-rails'
 " Color Scheme
 Bundle 'tomasr/molokai'
 
+" Load all plugins
+call vundle#end()
+
 " Map comma to be the leader key
 let mapleader = ","
 

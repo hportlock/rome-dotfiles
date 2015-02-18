@@ -67,6 +67,9 @@ let g:rspec_command = ":Silent tmux select-window -t human-2:2;tmux -q send-keys
 noremap <leader>a :call RunCurrentSpecFile()<CR>
 noremap <leader>s :call RunNearestSpec()<CR>
 
+" faith/vim-go - auto add go imports
+let g:go_fmt_command = "goimports"
+
 filetype plugin indent on
 
 " Set the filetype for *.md files to be markdown

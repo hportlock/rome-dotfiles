@@ -45,6 +45,9 @@ Bundle 'tpope/vim-rails'
 " Color Scheme
 Bundle 'tomasr/molokai'
 
+" Color Scheme better for vimdiff
+Bundle 'dhruvasagar/vim-railscasts-theme'
+
 " Load all plugins
 call vundle#end()
 
@@ -96,6 +99,10 @@ endif
 
 let g:molokai_original = 1
 colorscheme molokai
+
+if &diff
+  colorscheme railscasts
+endif
 
 " Make backspace work like normal
 set backspace=2

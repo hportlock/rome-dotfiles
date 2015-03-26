@@ -42,6 +42,9 @@ Bundle 'SQLUtilities'
 " Extra stuff for rails development
 Bundle 'tpope/vim-rails'
 
+" Better support for Angular
+Plugin 'burnettk/vim-angular'
+
 " Color Scheme
 Bundle 'tomasr/molokai'
 
@@ -72,6 +75,40 @@ noremap <leader>s :call RunNearestSpec()<CR>
 
 " faith/vim-go - auto add go imports
 let g:go_fmt_command = "goimports"
+
+" Allow for ionic html attributes in syntastic
+"allow for ionic html attributes
+let g:syntastic_html_tidy_blocklevel_tags = [
+  \'ion-checkbox',
+  \'ion-content',
+  \'ion-delete-button',
+  \'ion-footer-bar',
+  \'ion-header-bar',
+  \'ion-infinite-scroll',
+  \'ion-item',
+  \'ion-list',
+  \'ion-modal-view',
+  \'ion-nav-back-button',
+  \'ion-nav-bar',
+  \'ion-nav-buttons',
+  \'ion-nav-view',
+  \'ion-option-button',
+  \'ion-pane',
+  \'ion-popover-view',
+  \'ion-radio',
+  \'ion-refresher',
+  \'ion-reorder-button',
+  \'ion-scroll',
+  \'ion-side-menu',
+  \'ion-side-menus',
+  \'ion-side-menu-content',
+  \'ion-slide',
+  \'ion-slide-box',
+  \'ion-tab',
+  \'ion-tabs',
+  \'ion-toggle',
+  \'ion-view',
+  \]
 
 filetype plugin indent on
 

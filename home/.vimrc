@@ -64,6 +64,11 @@ command! -nargs=1 Silent
 
 " Bundle config
 "
+" ctrlp - ignore platforms directories
+let g:ctrlp_custom_ignore = {
+ \ 'dir': '\v[\/]platforms$',
+ \ }
+
 " tComment - Use // to comment out lines
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
@@ -109,6 +114,8 @@ let g:syntastic_html_tidy_blocklevel_tags = [
   \'ion-toggle',
   \'ion-view',
   \]
+
+" End Bundle config
 
 filetype plugin indent on
 

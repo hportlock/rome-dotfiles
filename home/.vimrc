@@ -186,25 +186,6 @@ nnoremap <Down> gj
 " Switch to previous file with <leader><leader>
 nnoremap <leader><leader> <c-^>
 
-" Dvorak it!
-"no d h
-"no h j
-"no t k
-"no n l
-"no s :
-"no S :
-"no j d
-"no l n
-"no L N
-" Added benefits
-"no - $
-" _ is already almost a synonym for ^, so use this but no need to remap
-"no N <C-w><C-w>
-"no T <C-w><C-r>
-"no H 8<Down>
-"no T 8<Up>
-"no D <C-w><C-r>
-
 " Map control-r to be a visual find-replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 

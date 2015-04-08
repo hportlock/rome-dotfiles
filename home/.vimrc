@@ -115,6 +115,11 @@ let g:syntastic_html_tidy_blocklevel_tags = [
   \'ion-view',
   \]
 
+" Turn syntax checking off for html to support angular templates
+let g:syntastic_mode_map={ 'mode': 'active',
+                    \ 'active_filetypes': [],
+                    \ 'passive_filetypes': ['html'] }
+
 " End Bundle config
 
 filetype plugin indent on

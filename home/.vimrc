@@ -33,6 +33,9 @@ Bundle 'yaymukund/vim-rabl'
 " Syntax highlight todo.txt
 Bundle 'freitass/todo.txt-vim'
 
+" Syntax highlight toml
+Bundle 'cespare/vim-toml'
+
 " Golang support
 Bundle 'fatih/vim-go'
 

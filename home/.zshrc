@@ -52,6 +52,9 @@ plugins=(git vi-mode osx)
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Setup rbenv
+export PATH="$HOME/.rbenv/shims:$PATH"
+
 # Setup homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 

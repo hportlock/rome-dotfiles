@@ -36,6 +36,12 @@ Bundle 'freitass/todo.txt-vim'
 " Syntax highlight toml
 Bundle 'cespare/vim-toml'
 
+" Syntax highlight javascript (required for jsx highlighting)
+Plugin 'pangloss/vim-javascript'
+
+" Syntax highlight jsx
+Plugin 'mxw/vim-jsx'
+
 " Golang support
 Bundle 'fatih/vim-go'
 
@@ -122,6 +128,9 @@ let g:syntastic_html_tidy_blocklevel_tags = [
 let g:syntastic_mode_map={ 'mode': 'active',
                     \ 'active_filetypes': [],
                     \ 'passive_filetypes': ['html'] }
+
+" Change syntastic js checker mainly to support reactjs
+let g:syntastic_javascript_checkers = ['eslint']
 
 " End Bundle config
 
@@ -215,5 +224,6 @@ autocmd FileType java setlocal sw=4
 " SSH in and touch files when the are saved on vagrant
 if !exists("ssh_touch_auto_command")
   let ssh_touch_auto_command = 1
+  autocmd BufWritePost /Users/rome/project/haven/project/haven-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/haven-webapp/% 2>/dev/null"'
   autocmd BufWritePost /Users/rome/work/alivecor_vm/project/hum-webapp/* silent execute '!ssh -q romedev "touch -c ~/project/hum-webapp/% 2>/dev/null"'
 endif

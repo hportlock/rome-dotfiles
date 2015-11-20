@@ -36,6 +36,9 @@ Bundle 'freitass/todo.txt-vim'
 " Syntax highlight toml
 Bundle 'cespare/vim-toml'
 
+" Syntax highlight jade
+Plugin 'digitaltoad/vim-jade'
+
 " Syntax highlight javascript (required for jsx highlighting)
 Plugin 'pangloss/vim-javascript'
 
@@ -73,17 +76,20 @@ command! -nargs=1 Silent
 
 " Bundle config
 "
-" ctrlp - ignore platforms directories
+" ctrlp
+" ignore platforms directories
 let g:ctrlp_custom_ignore = {
- \ 'dir': '\v[\/]platforms$',
+ \ 'dir': '\v[\/]platforms$|[\/]tmp$',
  \ }
+" use version control files to set the working directory
+let g:ctrlp_working_path_mode = 'ra'
 
 " tComment - Use // to comment out lines
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " thoughtbot/vim-rspec
-let g:rspec_command = ":Silent tmux select-window -t human-2:2;tmux -q send-keys -t human:2 \"zeus rspec {spec}\" C-m"
+let g:rspec_command = ":Silent tmux select-window -t ll-1:4;tmux -q send-keys -t ll:4 \"zeus rspec {spec}\" C-m"
 noremap <leader>a :call RunCurrentSpecFile()<CR>
 noremap <leader>s :call RunNearestSpec()<CR>
 
@@ -138,6 +144,9 @@ filetype plugin indent on
 
 " Set the filetype for *.md files to be markdown
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" Set the filetype for *.ruby files to be ruby
+au BufRead,BufNewFile *.ruby set filetype=ruby
 
 " Up the terminal speed
 set ttyscroll=1

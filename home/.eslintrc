@@ -3,9 +3,17 @@
     "react"
   ],
   "ecmaFeatures": {
-    "jsx": true
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "defaultParams": true,
+    "jsx": true,
+    "modules": true,
+    "objectLiteralShorthandProperties": true,
+    "templateStrings": true
   },
   "rules": {
+    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+
     "react/display-name": 0,
     "react/jsx-boolean-value": 1,
     "react/jsx-closing-bracket-location": 1,

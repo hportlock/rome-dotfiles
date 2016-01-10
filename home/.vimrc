@@ -10,7 +10,7 @@ Bundle 'gmarik/vundle'
 
 " Bundles
 " Quick searching by hitting <Ctrl>-p
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 
 " Comment out lines in source code quickly
 Bundle "tComment"
@@ -57,8 +57,9 @@ Bundle 'tpope/vim-rails'
 " Better support for Angular
 Plugin 'burnettk/vim-angular'
 
-" Color Scheme
+" Color Schemes
 Bundle 'tomasr/molokai'
+Bundle 'altercation/vim-colors-solarized'
 
 " Color Scheme better for vimdiff
 Bundle 'dhruvasagar/vim-railscasts-theme'
@@ -81,6 +82,11 @@ command! -nargs=1 Silent
 let g:ctrlp_custom_ignore = {
  \ 'dir': '\v[\/]platforms$|[\/]tmp$',
  \ }
+" ignore stuff in .gitignore
+let g:ctrlp_user_command = [
+\ '.git/',
+\ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
+\ ]
 " use version control files to set the working directory
 let g:ctrlp_working_path_mode = 'ra'
 
@@ -148,6 +154,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Set the filetype for *.ruby files to be ruby
 au BufRead,BufNewFile *.ruby set filetype=ruby
 
+" Set .babelrc files to be json
+au BufRead,BufNewFile .babelrc set filetype=json
+
 " Up the terminal speed
 set ttyscroll=1
 set ttyfast
@@ -167,8 +176,11 @@ if has('mac') || has('macunix')
     nmap <esc>[D <left>
 endif
 
-let g:molokai_original = 1
-colorscheme molokai
+" Solarized colors
+set term=xterm-256color
+syntax enable
+set background=dark
+colorscheme solarized
 
 if &diff
   colorscheme railscasts

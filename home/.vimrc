@@ -154,6 +154,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Set the filetype for *.ruby files to be ruby
 au BufRead,BufNewFile *.ruby set filetype=ruby
 
+" Set the filetype for *.json.jbuilder to be ruby
+au BufRead,BufNewFile *.json.jbuilder set filetype=ruby
+
 " Set .babelrc files to be json
 au BufRead,BufNewFile .babelrc set filetype=json
 

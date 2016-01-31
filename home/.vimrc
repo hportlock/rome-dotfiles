@@ -249,5 +249,4 @@ autocmd FileType java setlocal sw=4
 if !exists("ssh_touch_auto_command")
   let ssh_touch_auto_command = 1
   autocmd BufWritePost /Users/rome/project/haven/project/haven-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/haven-webapp/% 2>/dev/null"'
-  autocmd BufWritePost /Users/rome/work/alivecor_vm/project/hum-webapp/* silent execute '!ssh -q romedev "touch -c ~/project/hum-webapp/% 2>/dev/null"'
 endif

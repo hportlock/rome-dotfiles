@@ -37,7 +37,7 @@ Bundle 'freitass/todo.txt-vim'
 Bundle 'cespare/vim-toml'
 
 " Syntax highlight jade
-Plugin 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-pug'
 
 " Syntax highlight javascript (required for jsx highlighting)
 Plugin 'pangloss/vim-javascript'
@@ -95,7 +95,7 @@ nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " thoughtbot/vim-rspec
-let g:rspec_command = ":Silent tmux select-window -t ll-1:4;tmux -q send-keys -t ll:4 \"zeus rspec {spec}\" C-m"
+let g:rspec_command = ":Silent tmux select-window -t ll-1:4;tmux -q send-keys -t ll:4 \"bin/rspec {spec}\" C-m"
 noremap <leader>a :call RunCurrentSpecFile()<CR>
 noremap <leader>s :call RunNearestSpec()<CR>
 

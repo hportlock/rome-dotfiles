@@ -42,8 +42,11 @@ export PATH="$PATH:$GOPATH/bin"
 bindkey '^R' history-incremental-search-backward
 
 # Setup nvm
-export NVM_DIR="/Users/rome/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Easily jump to the root of git directories
 alias gr='[ ! -z $(git rev-parse --show-toplevel) ] && cd $(git rev-parse --show-toplevel || pwd)'
+
+# Integrate with the iterm2 shell
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

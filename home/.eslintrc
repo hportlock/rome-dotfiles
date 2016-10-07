@@ -5,7 +5,9 @@
   "ecmaFeatures": {
     "arrowFunctions": true,
     "blockBindings": true,
+    "classes": true,
     "defaultParams": true,
+    "forOf": true,
     "jsx": true,
     "modules": true,
     "objectLiteralShorthandProperties": true,

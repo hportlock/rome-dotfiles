@@ -57,6 +57,12 @@ Bundle 'tpope/vim-rails'
 " Better support for Angular
 Plugin 'burnettk/vim-angular'
 
+" Support for text snippets
+Plugin 'SirVer/ultisnips'
+
+" Predefined snippets
+Plugin 'honza/vim-snippets'
+
 " Color Schemes
 Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized'
@@ -143,6 +149,17 @@ let g:syntastic_mode_map={ 'mode': 'active',
 
 " Change syntastic js checker mainly to support reactjs
 let g:syntastic_javascript_checkers = ['eslint']
+
+" Let syntastic populate the location list
+let g:syntastic_always_populate_loc_list = 1
+
+" Trigger configuration for ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
 " End Bundle config
 
@@ -248,5 +265,7 @@ autocmd FileType java setlocal sw=4
 " SSH in and touch files when the are saved on vagrant
 if !exists("ssh_touch_auto_command")
   let ssh_touch_auto_command = 1
+  autocmd BufWritePost /Users/rome/project/haven/project/chosen-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/chosen-webapp/% 2>/dev/null"'
   autocmd BufWritePost /Users/rome/project/haven/project/haven-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/haven-webapp/% 2>/dev/null"'
+  autocmd BufWritePost /Users/rome/project/haven/project/admin-chosen/* silent execute '!ssh -q havenvm "touch -c ~/project/admin-chosen/% 2>/dev/null"'
 endif

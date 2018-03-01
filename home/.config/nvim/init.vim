@@ -1,8 +1,9 @@
-filetype off
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Bundles
+" Let plugins repeat with the dot
+Plug 'tpope/vim-repeat'
+
 " Quick searching by hitting <Ctrl>-p
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -54,11 +55,27 @@ Plug 'burnettk/vim-angular'
 " Support for text snippets
 Plug 'SirVer/ultisnips'
 
-" Predefined snippets
-Plug 'honza/vim-snippets'
+" Plugin for making changing surrounding tags/punctuation easier
+Plug 'tpope/vim-surround'
+
+" Search and replace alter string case etc with ease
+Plug 'tpope/vim-abolish'
+
+" Change lines from single to multi quickly
+Plug 'AndrewRadev/splitjoin.vim'
+
+" Javascript auto importing
+Plug 'galooshi/vim-import-js'
+
+" Code completion in many languages
+Plug 'valloric/youcompleteme'
+
+" Insert quotes, parens etc in pairs
+Plug 'jiangmiao/auto-pairs'
 
 " Color Schemes
 Plug 'tomasr/molokai'
+
 " Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'lifepillar/vim-solarized8'
 
@@ -68,8 +85,8 @@ Plug 'dhruvasagar/vim-railscasts-theme'
 " Load all plugins
 call plug#end()
 
-" Map comma to be the leader key
-let mapleader = ","
+" Map space to be the leader key
+let mapleader = " "
 
 " Define Silent to automatically redraw the screen
 command! -nargs=1 Silent
@@ -96,8 +113,8 @@ nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " thoughtbot/vim-rspec
-let g:rspec_command = ":Silent tmux select-window -t ll-1:4;tmux -q send-keys -t ll:4 \"bin/rspec {spec}\" C-m"
-noremap <leader>a :call RunCurrentSpecFile()<CR>
+let g:rspec_command = ":Silent tmux select-window -t ih:2;tmux -q send-keys -t ih:2 \"dock rspec {spec}\" C-m"
+noremap <leader>t :call RunCurrentSpecFile()<CR>
 noremap <leader>s :call RunNearestSpec()<CR>
 
 " faith/vim-go - auto add go imports
@@ -149,16 +166,18 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 
 " Trigger configuration for ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+set runtimepath+=~/.vim
+let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "UltiSnips"]
+
+" YouCompleteMe
+" close the preview window after completion
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " End Bundle config
-
-filetype plugin indent on
 
 " Set the filetype for *.md files to be markdown
 au BufRead,BufNewFile *.md set filetype=markdown

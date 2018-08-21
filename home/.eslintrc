@@ -7,6 +7,7 @@
       "blockBindings": true,
       "classes": true,
       "defaultParams": true,
+      "experimentalObjectRestSpread": true,
       "forOf": true,
       "jsx": true,
       "modules": true,
@@ -34,7 +35,7 @@
     "react/jsx-uses-vars": 1,
     "react/jsx-wrap-multilines": 1,
     "react/no-danger": 1,
-    "react/no-did-mount-set-state": [1],
+    /* "react/no-did-mount-set-state": [1], */
     "react/no-did-update-set-state": 1,
     "react/no-multi-comp": 1,
     "react/no-set-state": 0,

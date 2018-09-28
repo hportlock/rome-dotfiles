@@ -10,11 +10,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Comment out lines in source code quickly
 Plug 'tComment'
 
-" Run rspec tests easily
-Plug 'thoughtbot/vim-rspec'
+" Run tests easily
+Plug 'janko-m/vim-test'
 
 " Extra syntax highlighting
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Syntax highlight coffee script
 Plug 'kchmck/vim-coffee-script'
@@ -61,6 +61,9 @@ Plug 'tpope/vim-surround'
 " Search and replace alter string case etc with ease
 Plug 'tpope/vim-abolish'
 
+" Shortcuts for jumping around etc
+Plug 'tpope/vim-unimpaired'
+
 " Change lines from single to multi quickly
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -72,6 +75,15 @@ Plug 'valloric/youcompleteme'
 
 " Insert quotes, parens etc in pairs
 Plug 'jiangmiao/auto-pairs'
+
+" Interface with database through vim
+Plug 'vim-scripts/dbext.vim'
+
+" Align on equal signs etc
+Plug 'vim-scripts/Align'
+
+" Use ctags easily
+Plug 'ludovicchabant/vim-gutentags'
 
 " Color Schemes
 Plug 'tomasr/molokai'
@@ -112,10 +124,17 @@ let g:ctrlp_working_path_mode = 'ra'
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
-" thoughtbot/vim-rspec
-let g:rspec_command = ":Silent tmux select-window -t ih:2;tmux -q send-keys -t ih:2 \"dock rspec {spec}\" C-m"
-noremap <leader>t :call RunCurrentSpecFile()<CR>
-noremap <leader>s :call RunNearestSpec()<CR>
+" vim-test
+"let g:rspec_command = ":Silent tmux select-window -t ih:2;tmux -q send-keys -t ih:2 \"dock rspec {spec}\" C-m"
+
+function! DockerTransform(cmd) abort
+  " return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
+  return 'dock e w '.shellescape(a:cmd)
+endfunction
+let g:test#custom_transformations = {'docker': function('DockerTransform')}
+let g:test#transformation = 'docker'
+noremap <leader>s :TestNearest<CR>
+noremap <leader>t :TestFile<CR>
 
 " faith/vim-go - auto add go imports
 let g:go_fmt_command = "goimports"
@@ -162,6 +181,9 @@ let g:syntastic_mode_map={ 'mode': 'active',
 " Change syntastic js checker mainly to support reactjs
 let g:syntastic_javascript_checkers = ['eslint']
 
+" Change syntastic checkers for ruby to add rubocop
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+
 " Let syntastic populate the location list
 let g:syntastic_always_populate_loc_list = 1
 
@@ -176,6 +198,22 @@ let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "UltiSnips"]
 " YouCompleteMe
 " close the preview window after completion
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" splitjoin
+" Don't add curly braces when splitting ruby keyword arguments
+let g:splitjoin_ruby_curly_braces = 0
+" Put html close bracket on a newline, added mainly for jsx
+let g:splitjoin_html_attributes_bracket_on_new_line = 1
+
+" SQLUtilities
+let g:sqlutil_align_where = 0
+let g:sqlutil_keyword_case = '\U'
+
+" Gutentags workaround for
+" https://github.com/ludovicchabant/vim-gutentags/issues/168
+" TODO remove once the issue is fixed
+au FileType gitcommit,gitrebase let g:gutentags_enabled=0
+
 
 " End Bundle config
 
@@ -198,8 +236,11 @@ au BufRead,BufNewFile .babelrc set filetype=json
 " Set things up to use the Mac Clipboard
 set clipboard+=unnamed
 
+" Set up true colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " Set 256 colors in the terminal
-set t_Co=256
+" set t_Co=256
 
 " Fix the broken mac binding
 if has('mac') || has('macunix')
@@ -209,6 +250,9 @@ if has('mac') || has('macunix')
     nmap <esc>[D <left>
 endif
 
+"Higlight syntax
+syntax on
+
 " Solarized colors
 set termguicolors
 colorscheme solarized8_dark
@@ -216,12 +260,10 @@ colorscheme solarized8_dark
 if &diff
   colorscheme railscasts
 endif
+hi IncSearch guibg=darkorange guifg=black
 
 " Make backspace work like normal
 set backspace=2
-
-"Higlight syntax
-syntax on
 
 "Highlight tabs and trailing spaces
 set list listchars=tab:>-,trail:.,extends:>
@@ -280,3 +322,6 @@ if !exists("ssh_touch_auto_command")
   autocmd BufWritePost /Users/rome/project/haven/project/haven-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/haven-webapp/% 2>/dev/null"'
   autocmd BufWritePost /Users/rome/project/haven/project/admin-chosen/* silent execute '!ssh -q havenvm "touch -c ~/project/admin-chosen/% 2>/dev/null"'
 endif
+
+" Easily print constants from docker ruby environment
+autocmd FileType ruby nnoremap <leader>pp yiw:-tabnew \| call termopen("dock rails runner \"ap\\(".@"."\\)\"") \| startinsert<Enter>

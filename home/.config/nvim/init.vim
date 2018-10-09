@@ -13,8 +13,8 @@ Plug 'tComment'
 " Run tests easily
 Plug 'janko-m/vim-test'
 
-" Extra syntax highlighting
-Plug 'vim-syntastic/syntastic'
+" Async linting
+Plug 'w0rp/ale'
 
 " Syntax highlight coffee script
 Plug 'kchmck/vim-coffee-script'
@@ -139,53 +139,17 @@ noremap <leader>t :TestFile<CR>
 " faith/vim-go - auto add go imports
 let g:go_fmt_command = "goimports"
 
-" Allow for ionic html attributes in syntastic
-"allow for ionic html attributes
-let g:syntastic_html_tidy_blocklevel_tags = [
-  \'ion-checkbox',
-  \'ion-content',
-  \'ion-delete-button',
-  \'ion-footer-bar',
-  \'ion-header-bar',
-  \'ion-infinite-scroll',
-  \'ion-item',
-  \'ion-list',
-  \'ion-modal-view',
-  \'ion-nav-back-button',
-  \'ion-nav-bar',
-  \'ion-nav-buttons',
-  \'ion-nav-view',
-  \'ion-option-button',
-  \'ion-pane',
-  \'ion-popover-view',
-  \'ion-radio',
-  \'ion-refresher',
-  \'ion-reorder-button',
-  \'ion-scroll',
-  \'ion-side-menu',
-  \'ion-side-menus',
-  \'ion-side-menu-content',
-  \'ion-slide',
-  \'ion-slide-box',
-  \'ion-tab',
-  \'ion-tabs',
-  \'ion-toggle',
-  \'ion-view',
-  \]
+" Use different ale linters
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'jsx': ['eslint'],
+\}
 
-" Turn syntax checking off for html to support angular templates
-let g:syntastic_mode_map={ 'mode': 'active',
-                    \ 'active_filetypes': [],
-                    \ 'passive_filetypes': ['html'] }
-
-" Change syntastic js checker mainly to support reactjs
-let g:syntastic_javascript_checkers = ['eslint']
-
-" Change syntastic checkers for ruby to add rubocop
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-
-" Let syntastic populate the location list
-let g:syntastic_always_populate_loc_list = 1
+" set jsx filetype so ale will pick it up
+" augroup FiletypeGroup
+"     autocmd!
+"     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+" augroup END
 
 " Trigger configuration for ultisnips
 let g:UltiSnipsExpandTrigger="<C-l>"

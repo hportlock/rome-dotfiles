@@ -224,7 +224,8 @@ colorscheme solarized8_dark
 if &diff
   colorscheme railscasts
 endif
-hi IncSearch guibg=darkorange guifg=black
+highlight IncSearch guibg=darkorange guifg=black
+highlight SignColumn guibg=DarkSlateGray
 
 " Make backspace work like normal
 set backspace=2

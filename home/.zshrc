@@ -22,18 +22,22 @@ antigen apply
 
 # Setup rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
 
 # Setup homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
-# Use vim as the default editor
-export EDITOR="/usr/local/bin/vim"
+# Use nvim as the default editor
+export EDITOR="nvim"
 
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add Sqllite from homebrew
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
@@ -50,3 +54,8 @@ alias gr='[ ! -z $(git rev-parse --show-toplevel) ] && cd $(git rev-parse --show
 
 # Integrate with the iterm2 shell
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Alias neovim to vim
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"

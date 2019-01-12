@@ -143,6 +143,7 @@ let g:go_fmt_command = "goimports"
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint'],
+\  'ruby': ['rubocop']
 \}
 
 " set jsx filetype so ale will pick it up
@@ -280,13 +281,12 @@ set softtabstop=2
 autocmd FileType java setlocal ts=4
 autocmd FileType java setlocal sw=4
 
-" SSH in and touch files when the are saved on vagrant
-if !exists("ssh_touch_auto_command")
-  let ssh_touch_auto_command = 1
-  autocmd BufWritePost /Users/rome/project/haven/project/chosen-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/chosen-webapp/% 2>/dev/null"'
-  autocmd BufWritePost /Users/rome/project/haven/project/haven-webapp/* silent execute '!ssh -q havenvm "touch -c ~/project/haven-webapp/% 2>/dev/null"'
-  autocmd BufWritePost /Users/rome/project/haven/project/admin-chosen/* silent execute '!ssh -q havenvm "touch -c ~/project/admin-chosen/% 2>/dev/null"'
-endif
-
 " Easily print constants from docker ruby environment
 autocmd FileType ruby nnoremap <leader>pp yiw:-tabnew \| call termopen("dock rails runner \"ap\\(".@"."\\)\"") \| startinsert<Enter>
+
+" For text message templates allow movement across lines
+autocmd BufRead,BufNewFile /Users/rome/project/haven/project/chosen-webapp/app/lib/interview_request_sms/templates/*
+  \ nnoremap j gj|
+  \ nnoremap k gk|
+  \ vnoremap j gj|
+  \ vnoremap k gk

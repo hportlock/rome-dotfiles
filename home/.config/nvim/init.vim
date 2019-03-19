@@ -73,9 +73,6 @@ Plug 'galooshi/vim-import-js'
 " Code completion in many languages
 Plug 'valloric/youcompleteme'
 
-" Insert quotes, parens etc in pairs
-Plug 'jiangmiao/auto-pairs'
-
 " Interface with database through vim
 Plug 'vim-scripts/dbext.vim'
 
@@ -84,6 +81,9 @@ Plug 'vim-scripts/Align'
 
 " Use ctags easily
 Plug 'ludovicchabant/vim-gutentags'
+
+" Search through files using ag
+Plug 'mileszs/ack.vim'
 
 " Color Schemes
 Plug 'tomasr/molokai'
@@ -129,7 +129,8 @@ vnoremap // :TComment<CR>
 
 function! DockerTransform(cmd) abort
   " return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
-  return 'dock e w '.shellescape(a:cmd)
+  " return 'dock e w '.shellescape(a:cmd)
+  return "tmux select-window -t ihr:2;tmux select-pane -t 1;tmux -q send-keys -t ihr:2 \"dock e w ".shellescape(a:cmd)."\" C-m"
 endfunction
 let g:test#custom_transformations = {'docker': function('DockerTransform')}
 let g:test#transformation = 'docker'
@@ -179,6 +180,10 @@ let g:sqlutil_keyword_case = '\U'
 " TODO remove once the issue is fixed
 au FileType gitcommit,gitrebase let g:gutentags_enabled=0
 
+" ack.vim
+" Set it up for ag
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
 
 " End Bundle config
 

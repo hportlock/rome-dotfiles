@@ -147,6 +147,12 @@ let g:ale_linters = {
 \  'ruby': ['rubocop']
 \}
 
+" Override vim-unimpared mappings with ALE
+:nmap ]a :ALENextWrap<CR>
+:nmap [a :ALEPreviousWrap<CR>
+:nmap ]A :ALELast
+:nmap [A :ALEFirst
+
 " set jsx filetype so ale will pick it up
 " augroup FiletypeGroup
 "     autocmd!

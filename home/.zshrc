@@ -24,9 +24,6 @@ antigen apply
 export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
 
-# Setup homeshick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
 # Use nvim as the default editor
 export EDITOR="nvim"
 
@@ -59,3 +56,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# Alias tmuinator
+alias mux="tmuxinator"

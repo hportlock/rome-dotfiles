@@ -85,6 +85,9 @@ Plug 'ludovicchabant/vim-gutentags'
 " Search through files using ag
 Plug 'mileszs/ack.vim'
 
+" Use nvim to edit textboxes in the browser
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+
 " Color Schemes
 Plug 'tomasr/molokai'
 
@@ -231,7 +234,7 @@ syntax on
 
 " Solarized colors
 set termguicolors
-colorscheme solarized8_dark
+colorscheme solarized8
 
 if &diff
   colorscheme railscasts

@@ -133,7 +133,7 @@ vnoremap // :TComment<CR>
 function! DockerTransform(cmd) abort
   " return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
   " return 'dock e w '.shellescape(a:cmd)
-  return "tmux select-window -t ihr:2;tmux select-pane -t 1;tmux -q send-keys -t ihr:2 \"dock e w ".shellescape(a:cmd)."\" C-m"
+  return "tmux select-window -t ih:2;tmux select-pane -t 1;tmux -q send-keys -t ih:2 \"dock e w ".shellescape(a:cmd)."\" C-m"
 endfunction
 let g:test#custom_transformations = {'docker': function('DockerTransform')}
 let g:test#transformation = 'docker'

@@ -88,6 +88,9 @@ Plug 'mileszs/ack.vim'
 " Use nvim to edit textboxes in the browser
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
+" Use the same terminal over and over
+Plug 'kassio/neoterm'
+
 " Color Schemes
 Plug 'tomasr/molokai'
 
@@ -133,10 +136,11 @@ vnoremap // :TComment<CR>
 function! DockerTransform(cmd) abort
   " return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
   " return 'dock e w '.shellescape(a:cmd)
-  return "tmux select-window -t ih:2;tmux select-pane -t 1;tmux -q send-keys -t ih:2 \"dock e w ".shellescape(a:cmd)."\" C-m"
+  return "tmux select-window -t ih:3;tmux select-pane -t 2;tmux -q send-keys -t ih:3 \"dock e w ".shellescape(a:cmd)."\" C-m"
 endfunction
 let g:test#custom_transformations = {'docker': function('DockerTransform')}
 let g:test#transformation = 'docker'
+let test#javascript#jest#executable = 'yarn test'
 noremap <leader>s :TestNearest<CR>
 noremap <leader>t :TestFile<CR>
 
@@ -304,3 +308,10 @@ autocmd BufRead,BufNewFile /Users/rome/project/haven/project/chosen-webapp/app/l
   \ nnoremap k gk|
   \ vnoremap j gj|
   \ vnoremap k gk
+
+" Settings for mdp command line presentations
+augroup mdp_md
+  autocmd!
+  autocmd BufRead,BufNewFile *.mdp.md setlocal tw=40
+  autocmd BufRead,BufNewFile *.mdp.md setlocal cc=40
+augroup END

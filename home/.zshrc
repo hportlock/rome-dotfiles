@@ -17,11 +17,7 @@ antigen bundle $HOME/.zsh-custom
 
 antigen apply
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Setup rbenv
-export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
 
 # Use nvim as the default editor
@@ -29,6 +25,7 @@ export EDITOR="nvim"
 
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

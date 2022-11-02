@@ -106,6 +106,9 @@ call plug#end()
 " Map space to be the leader key
 let mapleader = " "
 
+" Set the perl location
+let g:perl_host_prog = '/opt/homebrew/bin/perl'
+
 " Define Silent to automatically redraw the screen
 command! -nargs=1 Silent
       \ | execute ':silent !'.<q-args>
@@ -135,11 +138,11 @@ vnoremap // :TComment<CR>
 
 function! DockerTransform(cmd) abort
   " return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
-  " return 'dock e w '.shellescape(a:cmd)
-  return "tmux select-window -t ih:3;tmux select-pane -t 2;tmux -q send-keys -t ih:3 \"dock e w ".shellescape(a:cmd)."\" C-m"
+  return 'dock e w '.shellescape(a:cmd)
 endfunction
 let g:test#custom_transformations = {'docker': function('DockerTransform')}
 let g:test#transformation = 'docker'
+" let g:test#strategy = "neoterm"
 let test#javascript#jest#executable = 'yarn test'
 noremap <leader>s :TestNearest<CR>
 noremap <leader>t :TestFile<CR>
@@ -153,6 +156,8 @@ let g:ale_linters = {
 \  'jsx': ['eslint'],
 \  'ruby': ['rubocop']
 \}
+" Make ale search the .venv diretory for python
+let g:ale_virtualenv_dir_names = ['.venv']
 
 " Override vim-unimpared mappings with ALE
 :nmap ]a :ALENextWrap<CR>
@@ -198,6 +203,9 @@ au FileType gitcommit,gitrebase let g:gutentags_enabled=0
 let g:ackprg = 'ag --vimgrep --smart-case'
 cnoreabbrev ag Ack
 
+" neoterm
+let g:neoterm_default_mod = 'rightbelow'
+
 " End Bundle config
 
 " Set the filetype for *.md files to be markdown
@@ -236,6 +244,9 @@ endif
 "Higlight syntax
 syntax on
 
+" Check spelling
+"set spell
+
 " Solarized colors
 set termguicolors
 colorscheme solarized8
@@ -251,6 +262,9 @@ set backspace=2
 
 "Highlight tabs and trailing spaces
 set list listchars=tab:>-,trail:.,extends:>
+
+" make a backupcopy of files to help with docker picking them up
+set backupcopy=auto
 
 "Make it known whether the line length is greater than 79 characters
 if exists('+colorcolumn')
@@ -294,6 +308,9 @@ set ts=2
 set sw=2
 set et
 set softtabstop=2
+
+" Make the terminal scrollback bigger
+set scrollback=100000
 
 " Filetype specific settings
 autocmd FileType java setlocal ts=4
